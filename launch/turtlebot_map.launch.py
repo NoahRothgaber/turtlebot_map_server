@@ -16,6 +16,8 @@ def generate_launch_description():
         'turtlebot_map_server'), 'config', 'bt_navigator.yaml')
     default_bt_xml_path = os.path.join(get_package_share_directory(
         'turtlebot_map_server'), 'config', 'behavior.xml')
+    recovery_yaml = os.path.join(get_package_share_directory(
+        'turtlebot3_navigation'), 'config', 'recovery.yaml')
     waypoint_follower_yaml = os.path.join(get_package_share_directory('turtlebot_map_server'), 'config', 'waypoint_follower.yaml')
     rviz_config_file_path = os.path.join(get_package_share_directory(
         'turtlebot_map_server'), 'rviz_config', 'pathplanning.rviz')
@@ -28,6 +30,12 @@ def generate_launch_description():
             parameters=[{'use_sim_time': False}, 
                         {'yaml_filename':map_file} 
                        ]),
+        Node(
+            package='nav2_behaviors',
+            executable='behavior_server',
+            name='behavior_server',
+            output='screen',
+            parameters=[recovery_yaml]),
         Node(
             package='nav2_amcl',
             executable='amcl',
@@ -78,7 +86,8 @@ def generate_launch_description():
                                         'controller_server',
                                         'planner_server',
                                         'bt_navigator',
-                                        'waypoint_follower'
+                                        'waypoint_follower',
+                                        'behavior_server'
                         ]}])
         ])
 

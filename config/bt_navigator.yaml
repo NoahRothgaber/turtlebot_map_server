@@ -1,11 +1,11 @@
 bt_navigator:
   ros__parameters:
-    use_sim_time: True
+    use_sim_time: False
     global_frame: map
     robot_base_frame: base_link
     odom_topic: /odom
     bt_loop_duration: 10
-    default_nav_to_pose_bt_xml: "~/turtlebot3_ws/src/turtlebot_map_server/config/behavior.xml"
+    # default_nav_to_pose_bt_xml: "~/turtlebot3_ws/src/turtlebot_map_server/config/behavior.xml"
     default_server_timeout: 20
     plugin_lib_names:
     - nav2_compute_path_to_pose_action_bt_node
