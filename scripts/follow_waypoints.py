@@ -31,19 +31,28 @@ def main():
     # Inspection route, probably read in from a file for a real application
     # from either a map or drive and repeat.
     inspection_route = [
-        [-1.29, 11.4],
-        [5.50, 13.30],
-        [2.60, 6.30],
-        [5.10, 0.50],
-	    [-0.30, -1.60]]
+        [3.84, 5.94],
+        [2.14, 8.81],
+        [3.39, 4.64],
+        [0.05, 2.71],
+	    [0.203, -2.4]]
+    
+    # inspection_route = [
+    #     [-1.29, 11.4],
+    #     [5.50, 13.30],
+    #     [2.60, 6.30],
+    #     [5.10, 0.50],
+	#     [-0.30, -1.60]]
 	#starts at init pose, then top left -> top right -> init pose -> bottom right -> bottom left
 
     # Set your demo's initial pose
     initial_pose = PoseStamped()
     initial_pose.header.frame_id = 'map'
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
-    initial_pose.pose.position.x = 2.60
-    initial_pose.pose.position.y = 6.30
+    #initial_pose.pose.position.x = 2.60
+    #initial_pose.pose.position.y = 6.30
+    initial_pose.pose.position.x = 0.203
+    initial_pose.pose.position.y = -2.4
     initial_pose.pose.orientation.z = 1.0
     initial_pose.pose.orientation.w = 0.0
     navigator.setInitialPose(initial_pose)
