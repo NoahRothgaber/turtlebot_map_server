@@ -13,9 +13,9 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name), glob('launch/*.launch.py')),
-	(os.path.join('share', package_name, 'config'), glob('config/*')),
-    (os.path.join('share', package_name, 'rviz_config'), glob('rviz_config/*')),
-    (os.path.join('share', package_name, 'maps'), glob('maps/*'))
+        (os.path.join('share', package_name, 'config'), glob('config/*')),
+        (os.path.join('share', package_name, 'rviz_config'), glob('rviz_config/*')),
+        (os.path.join('share', package_name, 'maps'), glob('maps/*'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -24,5 +24,7 @@ setup(
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
-    entry_points={'console_scripts':[]},
+    entry_points={'console_scripts':[
+        f'follow_waypoint_node = {package_name}.follow_waypoints:main'
+    ]},
 )
