@@ -5,7 +5,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     
-    map_file = os.path.join(get_package_share_directory('turtlebot_map_server'), 'config', 'maprestricted.yaml')
+    map_file = os.path.join(get_package_share_directory('turtlebot_map_server'), 'maps', 'map4092.yaml')
     nav2_yaml = os.path.join(get_package_share_directory(
         'turtlebot_map_server'), 'config', 'amcl_config.yaml')
     controller_yaml = os.path.join(get_package_share_directory(
@@ -17,10 +17,11 @@ def generate_launch_description():
     default_bt_xml_path = os.path.join(get_package_share_directory(
         'turtlebot_map_server'), 'config', 'behavior.xml')
     recovery_yaml = os.path.join(get_package_share_directory(
-        'turtlebot3_navigation'), 'config', 'recovery.yaml')
+        'turtlebot_map_server'), 'config', 'recovery.yaml')
     waypoint_follower_yaml = os.path.join(get_package_share_directory('turtlebot_map_server'), 'config', 'waypoint_follower.yaml')
     rviz_config_file_path = os.path.join(get_package_share_directory(
         'turtlebot_map_server'), 'rviz_config', 'pathplanning.rviz')
+    
     return LaunchDescription([
         Node(
             package='nav2_map_server',
@@ -28,8 +29,7 @@ def generate_launch_description():
             name='map_server',
             output='screen',
             parameters=[{'use_sim_time': False}, 
-                        {'yaml_filename':map_file} 
-                       ]),
+                        {'yaml_filename':map_file}]),
         Node(
             package='nav2_behaviors',
             executable='behavior_server',
@@ -54,7 +54,8 @@ def generate_launch_description():
             executable='bt_navigator',
             name='bt_navigator',
             output='screen',
-            parameters=[bt_navigator_yaml, {'default_bt_xml_filename': default_bt_xml_path}]),
+            parameters=[bt_navigator_yaml,
+                        {'default_bt_xml_filename': default_bt_xml_path}]),
         Node(
             package='nav2_planner',
             executable='planner_server',
