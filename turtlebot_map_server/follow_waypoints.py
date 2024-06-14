@@ -32,21 +32,23 @@ class Waypoints(Node):
         self.navigator = BasicNavigator()
 
         self.inspection_route = [
-                            [3.84, 5.94],
-                            [2.14, 8.81],
-                            [3.39, 4.64],
-                            [0.05, 2.71],
-                            [0.28, -0.30, 0.769]]
+                            [-2.88, -0.96],
+                            [2.45, 8.85],
+                            [-3.02, 5.64],
+                            [-2.63, -1.35],
+                            ]
 
         self.initial_pose = PoseStamped()
         self.initial_pose.header.frame_id = 'map'
         self.initial_pose.header.stamp = self.navigator.get_clock().now().to_msg()
         # self.initial_pose.pose.position.x = 2.60
         # self.initial_pose.pose.position.y = 6.30
-        self.initial_pose.pose.position.x = 0.28
-        self.initial_pose.pose.position.y = -0.30
-        self.initial_pose.pose.orientation.z = 1.0
+        self.initial_pose.pose.position.x = -2.63
+        self.initial_pose.pose.position.y = -1.35
+        self.initial_pose.pose.orientation.z = 0.0
         self.initial_pose.pose.orientation.w = 0.0
+        self.navigator.setInitialPose(self.initial_pose)
+        self.navigator.waitUntilNav2Active()
 
         self.inspection_points = []
         self.inspection_pose = PoseStamped()
